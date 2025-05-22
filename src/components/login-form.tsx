@@ -46,7 +46,7 @@ export function LoginForm({
                 </div>
                 <Input id="password" type="password" placeholder="water" required />
               </div>
-              <Button type="submit" className="w-full bg-white text-neutral-800">
+              <Button type="submit" className="w-full  text-neutral-800">
                 Login
               </Button>
               <Button variant="outline" className="w-full">
