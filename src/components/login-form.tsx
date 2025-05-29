@@ -1,4 +1,8 @@
+'use client';
+
 import { cn } from "@/lib/utils"
+import { useRouter } from 'next/navigation';
+import { FormEvent } from 'react';
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -13,6 +17,12 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const router = useRouter();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push('/dashboard');
+  };
   return (
     <div className={cn("flex flex-col gap-6 text-center", className)} {...props}>
       <Card>
@@ -23,7 +33,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
