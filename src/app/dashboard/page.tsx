@@ -1,8 +1,73 @@
 import Image from "next/image";
-import { LoginForm } from "@/components/login-form";
-export default function Home() {
+import { Calendar, FileStack, Pencil, Search, Settings } from "lucide-react"
+import 
+{
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@/components/ui/sidebar"
+ 
+const items = [
+  {
+    title: "Decks",
+    url: "#",
+    icon: FileStack,
+  },
+  {
+    title: "Edit",
+    url: "#",
+    icon: Pencil,
+  },
+  {
+    title: "Calendar",
+    url: "#",
+    icon: Calendar,
+  },
+  {
+    title: "Search",
+    url: "#",
+    icon: Search,
+  },
+  {
+    title: "Settings",
+    url: "#",
+    icon: Settings,
+  },
+]
+export default function Home() 
+{
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        
+        <SidebarProvider>
+            <Sidebar>
+                <SidebarContent>
+                    <SidebarGroup>
+                        <SidebarGroupLabel className="mb-3">Application</SidebarGroupLabel>
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                            {items.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton asChild>
+                                        <a href={item.url}>
+                                        <item.icon />
+                                        <span>{item.title}</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                </SidebarContent>
+            </Sidebar>
+        </SidebarProvider>
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
             <Image
             className="dark:invert"
