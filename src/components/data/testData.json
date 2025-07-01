@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "deckName": "Japanese N5",
+    "deckAmount": 200,
+    "amountNew": 30,
+    "amountRelearn": 5,
+    "amountReview": 40
+  },
+  {
+    "id": 2,
+    "deckName": "Computer Science",
+    "deckAmount": 150,
+    "amountNew": 20,
+    "amountRelearn": 3,
+    "amountReview": 25
+  },
+  {
+    "id": 3,
+    "deckName": "GRE Vocabulary",
+    "deckAmount": 300,
+    "amountNew": 40,
+    "amountRelearn": 10,
+    "amountReview": 50
+  },
+  {
+    "id": 4,
+    "deckName": "History Facts",
+    "deckAmount": 120,
+    "amountNew": 10,
+    "amountRelearn": 2,
+    "amountReview": 15
+  },
+  {
+    "id": 5,
+    "deckName": "Spanish Basics",
+    "deckAmount": 180,
+    "amountNew": 25,
+    "amountRelearn": 4,
+    "amountReview": 30
+  }
+]

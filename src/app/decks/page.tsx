@@ -1,5 +1,8 @@
+"use client"
 import Image from "next/image";
-import { Calendar, FileStack, Pencil, Search, Settings } from "lucide-react"
+import { Calendar, FileStack, Pencil, Search, Settings, View } from "lucide-react"
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import 
 {
   Sidebar,
@@ -12,11 +15,11 @@ import
   SidebarMenuItem,
   SidebarProvider,
 } from "@/components/ui/sidebar"
- 
+
 const items = [
   {
     title: "Decks",
-    url: "#",
+    url: "decks",
     icon: FileStack,
   },
   {
@@ -40,8 +43,51 @@ const items = [
     icon: Settings,
   },
 ]
+const ecks = [
+    {
+    id: 0,
+    deckName: "Japanese N5",
+    deckAmount: 200,
+    amountNew: 30,
+    amountRelearn: 5,
+    amountReview: 40
+  },
+  {
+    id: 1,
+    deckName: "Computer Science",
+    deckAmount: 150,
+    amountNew: 20,
+    amountRelearn: 3,
+    amountReview: 25
+  },
+  {
+    id: 2,
+    deckName: "GRE Vocab",
+    deckAmount: 300,
+    amountNew: 40,
+    amountRelearn: 10,
+    amountReview: 50
+  },
+  {
+    id: 3,
+    deckName: "History Facts",
+    deckAmount: 120,
+    amountNew: 10,
+    amountRelearn: 2,
+    amountReview: 15
+  },
+  {
+    id: 4,
+    deckName: "Spanish Basics",
+    deckAmount: 180,
+    amountNew: 25,
+    amountRelearn: 4,
+    amountReview: 30
+  }
+]
 export default function Home() 
 {
+    const router = useRouter();
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         
@@ -68,8 +114,17 @@ export default function Home()
                 </SidebarContent>
             </Sidebar>
         </SidebarProvider>
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-            <Image
+        <main className="flex align-top gap-[100px] row-start-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {ecks.map((eck, id) => (
+                <Link href={`/decks/${id}`} className="border hover:cursor-pointer">
+                    <h1>Name: {eck.deckName}</h1> 
+                    <h3>Total: {eck.deckAmount}</h3>
+                    <h3>New: {eck.amountNew}</h3>
+                    <h3>Relearn: {eck.amountRelearn}</h3>
+                    <h3>Review: {eck.amountReview}</h3>
+                </Link>
+            ))}
+            {/* <Image
             className="dark:invert"
             src="/next.svg"
             alt="Next.js logo"
@@ -114,7 +169,7 @@ export default function Home()
             >
                 Read our docs
             </a>
-            </div>
+            </div>*/}
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
             <a
