@@ -21,7 +21,7 @@ export function LoginForm({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push('/dashboard');
+    router.push('/decks');
   };
   return (
     <div className={cn("flex flex-col gap-6 text-center", className)} {...props}>

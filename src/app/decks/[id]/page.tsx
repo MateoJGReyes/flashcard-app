@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { Calendar, FileStack, Pencil, Search, Settings, View } from "lucide-react"
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import 
 {
@@ -45,53 +45,40 @@ const items = [
 ]
 const ecks = [
     {
+    id: 0,
+    cardQuestion: "why did the chicken cross the road?",
+    cardAnswer: "hey bro"
+  },
+  {
     id: 1,
-    deckName: "Japanese N5",
-    deckAmount: 200,
-    amountNew: 30,
-    amountRelearn: 5,
-    amountReview: 40
+    cardQuestion: "interesting",
+    cardAnswer: "yeah"
   },
   {
     id: 2,
-    deckName: "Computer Science",
-    deckAmount: 150,
-    amountNew: 20,
-    amountRelearn: 3,
-    amountReview: 25
+    cardQuestion: "my mother had a b",
+    cardAnswer: "thats cool"
   },
   {
     id: 3,
-    deckName: "GRE Vocab",
-    deckAmount: 300,
-    amountNew: 40,
-    amountRelearn: 10,
-    amountReview: 50
+    cardQuestion: "water in",
+    cardAnswer: "bwaoi"
   },
   {
     id: 4,
-    deckName: "History Facts",
-    deckAmount: 120,
-    amountNew: 10,
-    amountRelearn: 2,
-    amountReview: 15
-  },
-  {
-    id: 5,
-    deckName: "Spanish Basics",
-    deckAmount: 180,
-    amountNew: 25,
-    amountRelearn: 4,
-    amountReview: 30
+    cardQuestion: "ssbb",
+    cardAnswer: "ultimate"
   }
 ]
-export default function Home() 
+export default function Home({ params }: { params: { id: string } }) 
 {
-    const router = useRouter();
+  const numericId = Number(params.id);
+  const eck = ecks.find((eck) => eck.id === numericId);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        
-        osu how
+        <h1>Question: {eck.cardQuestion}</h1> 
+        <h3>Answer: {eck.cardAnswer}</h3>
+        osu how {params.id}
         </div>
   );
 }

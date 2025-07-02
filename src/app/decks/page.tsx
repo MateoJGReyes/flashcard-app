@@ -116,7 +116,7 @@ export default function Home()
         </SidebarProvider>
         <main className="flex align-top gap-[100px] row-start-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {ecks.map((eck, id) => (
-                <Link href={`/decks/${id}`} className="border hover:cursor-pointer">
+                <Link key={id} href={`/decks/${id}`} className="border hover:cursor-pointer rounded-md p-8 leading-8">
                     <h1>Name: {eck.deckName}</h1> 
                     <h3>Total: {eck.deckAmount}</h3>
                     <h3>New: {eck.amountNew}</h3>
