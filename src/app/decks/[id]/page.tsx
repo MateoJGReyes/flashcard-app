@@ -1,6 +1,8 @@
 "use client"
 import Image from "next/image";
-import { Calendar, FileStack, Pencil, Search, Settings, View } from "lucide-react"
+import { useState } from "react";
+import { AppSideBar } from "@/components/appSideBar";
+import { Calendar, FileStack, Pencil, Search, Settings, ArrowLeft } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import 
@@ -72,13 +74,25 @@ const ecks = [
 ]
 export default function Home({ params }: { params: { id: string } }) 
 {
+  const [side, setSide] = useState(1);
+  const handleSides = () => 
+  {
+      setSide((prev) => (prev === 1 ? 2 : 1));
+  }
   const numericId = Number(params.id);
   const eck = ecks.find((eck) => eck.id === numericId);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <h1>Question: {eck.cardQuestion}</h1> 
-        <h3>Answer: {eck.cardAnswer}</h3>
+    <div>
+      <AppSideBar />
+    <div onClick={handleSides}
+    className="grid items-center border justify-items-center p-8 gap-16 font-[family-name:var(--font-geist-sans)]">
+        <h1 className="text-[50px]">{side === 1 ? eck?.cardQuestion : eck?.cardAnswer}</h1> 
+    </div>
+    <div>
+      <h1>
         osu how {params.id}
-        </div>
+      </h1>
+    </div>
+    </div>
   );
 }
