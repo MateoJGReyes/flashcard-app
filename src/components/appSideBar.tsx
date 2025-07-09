@@ -17,7 +17,7 @@ import
 const items = [
   {
     title: "Decks",
-    url: "decks",
+    url: "/decks",
     icon: FileStack,
   },
   {

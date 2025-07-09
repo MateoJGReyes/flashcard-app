@@ -82,13 +82,13 @@ export default function Home({ params }: { params: { id: string } })
   const numericId = Number(params.id);
   const eck = ecks.find((eck) => eck.id === numericId);
   return (
-    <div>
+    <div className="flex grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <AppSideBar />
-    <div onClick={handleSides}
-    className="grid items-center border justify-items-center p-8 gap-16 font-[family-name:var(--font-geist-sans)]">
+    <main onClick={handleSides}
+    className="border ml-64 p-8 font-[family-name:var(--font-geist-sans)]">
         <h1 className="text-[50px]">{side === 1 ? eck?.cardQuestion : eck?.cardAnswer}</h1> 
-    </div>
-    <div>
+    </main>
+    <div className="ml-64 p-8 font-[family-name:var(--font-geist-sans)]">
       <h1>
         osu how {params.id}
       </h1>
