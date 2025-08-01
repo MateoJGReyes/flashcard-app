@@ -48,13 +48,13 @@ const items = [
 const ecks = [
     {
     id: 0,
-    cardQuestion: "why did the chicken cross the road?",
-    cardAnswer: "hey bro"
+    cardQuestion: 'この連続小説の最終回は, (    ) どうなるのだろうか。1: いっそう  2: たしか  3: なにぶん  4: はたして',
+    cardAnswer: "4. はたして"
   },
   {
     id: 1,
-    cardQuestion: "interesting",
-    cardAnswer: "yeah"
+    cardQuestion: "What base is binary",
+    cardAnswer: "2"
   },
   {
     id: 2,
@@ -85,7 +85,7 @@ export default function Home({ params }: { params: { id: string } })
     <div className="flex grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <AppSideBar />
     <main onClick={handleSides}
-    className="border ml-64 p-8 font-[family-name:var(--font-geist-sans)]">
+    className="w-250 h-150 border border-5 ml-64 p-20 flex rounded-xl items-center justify-center font-[family-name:var(--font-geist-sans)] overflow-hidden">
         <h1 className="text-[50px]">{side === 1 ? eck?.cardQuestion : eck?.cardAnswer}</h1> 
     </main>
     <div className="ml-64 p-8 font-[family-name:var(--font-geist-sans)]">

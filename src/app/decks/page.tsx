@@ -7,7 +7,7 @@ import Link from "next/link";
 const ecks = [
     {
     id: 0,
-    deckName: "Japanese N5",
+    deckName: "Japanese N1",
     deckAmount: 200,
     amountNew: 30,
     amountRelearn: 5,
@@ -23,7 +23,7 @@ const ecks = [
   },
   {
     id: 2,
-    deckName: "GRE Vocab",
+    deckName: "Review",
     deckAmount: 300,
     amountNew: 40,
     amountRelearn: 10,
@@ -31,7 +31,7 @@ const ecks = [
   },
   {
     id: 3,
-    deckName: "History Facts",
+    deckName: "Placeholder #1",
     deckAmount: 120,
     amountNew: 10,
     amountRelearn: 2,
@@ -39,7 +39,7 @@ const ecks = [
   },
   {
     id: 4,
-    deckName: "Spanish Basics",
+    deckName: "Placeholder #2",
     deckAmount: 180,
     amountNew: 25,
     amountRelearn: 4,
