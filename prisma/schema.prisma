@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model card {
+  id           Int     @id @default(autoincrement())
+  deck         deck @relation(fields: [deckId], references: [id])
+  deckId       Int
+  cardQuestion String?
+  cardAnswer   String?
+
+  @@index(deckId)
+}
+
+model deck {
+  id Int @id @default(autoincrement())
+  deckName String?
+  cards card[]
+}

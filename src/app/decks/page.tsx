@@ -3,6 +3,9 @@ import Image from "next/image";
 import { AppSideBar } from "@/components/appSideBar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { PrismaClient } from './src/generated/prisma';
+
+const prisma = new PrismaClient()
 
 const ecks = [
     {
