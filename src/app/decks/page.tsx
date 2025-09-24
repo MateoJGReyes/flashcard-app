@@ -3,54 +3,37 @@ import Image from "next/image";
 import { AppSideBar } from "@/components/appSideBar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { PrismaClient } from '@/generated/prisma';
+import { useState, useEffect } from "react";
 
-const prisma = new PrismaClient()
+type Deck = {
+  id: number;
+  deckName: string | null;
+  deckAmount: number,
+  amountNew: number,
+  amountRelearn: number,
+  amountReview: number;
+};
 
-const ecks = [
-    {
-    id: 0,
-    deckName: "Japanese N1",
-    deckAmount: 200,
-    amountNew: 30,
-    amountRelearn: 5,
-    amountReview: 40
-  },
-  {
-    id: 1,
-    deckName: "Computer Science",
-    deckAmount: 150,
-    amountNew: 20,
-    amountRelearn: 3,
-    amountReview: 25
-  },
-  {
-    id: 2,
-    deckName: "Review",
-    deckAmount: 300,
-    amountNew: 40,
-    amountRelearn: 10,
-    amountReview: 50
-  },
-  {
-    id: 3,
-    deckName: "Placeholder #1",
-    deckAmount: 120,
-    amountNew: 10,
-    amountRelearn: 2,
-    amountReview: 15
-  },
-  {
-    id: 4,
-    deckName: "Placeholder #2",
-    deckAmount: 180,
-    amountNew: 25,
-    amountRelearn: 4,
-    amountReview: 30
-  }
-]
 export default function Home() 
 {
+  const [ecks, setEcks] = useState<Deck[]>([]);
+  useEffect(() => {
+    async function fetchDecks() 
+    {
+      const res = await fetch("/api/decks");
+      const decks = await res.json();
+      const ecksa = decks.map((d: Deck) => ({
+        id: d.id,
+        deckName: d.deckName ?? "Unknown",
+        deckAmount: d.deckAmount,
+        amountNew: d.amountNew,
+        amountRelearn: d.amountRelearn,
+        amountReview: d.amountReview
+      }));
+      setEcks(ecksa);
+    }
+    fetchDecks();
+  }, []);
     const router = useRouter();
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">

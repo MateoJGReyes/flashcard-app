@@ -9,17 +9,22 @@ datasource db {
 }
 
 model card {
-  id           Int     @id @default(autoincrement())
-  deck         deck @relation(fields: [deckId], references: [id])
-  deckId       Int
-  cardQuestion String?
-  cardAnswer   String?
+  id            Int     @id @default(autoincrement())
+  deck          deck @relation(fields: [deckId], references: [id])
+  deckId        Int
+  cardQuestion  String?
+  cardAnswer    String?
 
   @@index(deckId)
 }
 
 model deck {
-  id Int @id @default(autoincrement())
-  deckName String?
-  cards card[]
+  id            Int @id @default(autoincrement())
+  deckName      String?
+  cards         card[]
+  deckId        Int @default(0)
+  deckAmount    Int @default(0)
+  amountNew     Int @default(0)
+  amountRelearn Int @default(0)
+  amountReview  Int @default(0)
 }
