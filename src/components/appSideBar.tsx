@@ -22,7 +22,7 @@ const items = [
   },
   {
     title: "Edit",
-    url: "#",
+    url: "/edit",
     icon: Pencil,
   },
   {
@@ -31,7 +31,7 @@ const items = [
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Browse",
     url: "#",
     icon: Search,
   },
@@ -44,17 +44,16 @@ const items = [
 export function AppSideBar()
 {
 return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div>
         
         <SidebarProvider>
             <Sidebar>
                 <SidebarContent>
                     <SidebarGroup>
-                        <SidebarGroupLabel className="mb-3">Application</SidebarGroupLabel>
                         <SidebarGroupContent>
                             <SidebarMenu>
                             {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
+                                <SidebarMenuItem key={item.title} className="hover:bg-neutral-800 rounded-md">
                                     <SidebarMenuButton asChild>
                                         <a href={item.url}>
                                         <item.icon />

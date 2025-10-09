@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        'sidebar-border': 'hsl(var(--sidebar-border))',
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
