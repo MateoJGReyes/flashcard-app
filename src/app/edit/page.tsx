@@ -1,6 +1,6 @@
 "use client"
 import { AppSideBar } from "@/components/appSideBar"
-import { Navbar14 } from "@/components/ui/shadcn-io/navbar-14"
+import { Navbar } from "@/components/ui/navbar"
 import {
   Table,
   TableBody,
@@ -59,9 +59,9 @@ export default function Home() {
     return (
         <>
             <div>
-                <Navbar14 />
+                <Navbar />
             </div>
-            <div className="relative z-0 grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 pb-20 sm:p-10 font-[family-name:var(--font-geist-sans)]">
+            <div className="relative z-0 grid grid-rows-[20px_1fr_20px] min-h-screen p-4 pb-20 sm:p-10 font-[family-name:var(--font-geist-sans)]">
                 <AppSideBar />
                 <div className="ml-64 flex-1">
                     <Table>
