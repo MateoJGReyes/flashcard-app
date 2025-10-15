@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 import { useId, useState } from 'react';
-import { PlusIcon, SearchIcon } from 'lucide-react';
+import { PlusIcon, SearchIcon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
@@ -28,6 +29,7 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
   onInfoItemClick?: (item: string) => void;
   onNotificationClick?: (notificationId: string) => void;
   onSettingsItemClick?: (item: string) => void;
+  toggleSidebar: () => void;
 }
 
 export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
@@ -46,6 +48,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
       onInfoItemClick,
       onNotificationClick,
       onSettingsItemClick,
+      toggleSidebar,
       ...props
     },
     ref
@@ -56,20 +59,29 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
       <header
         ref={ref}
         className={cn(
-          'fixed border-b border-neutral-700 bg-neutral-950 z-100 px-4 md:px-6 w-full [&_*]:no-underline',
+          'fixed border-b border-neutral-700 bg-[#ffffff] dark:bg-neutral-950 z-100 px-3 w-full [&_*]:no-underline',
           className
         )}
         {...props}
       >
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Left Side */}
-          <div className="gap-4">
-            <Image className='rounded-xl'
+          <div className="flex items-center gap-2">
+            <div 
+            className=" hover:bg-neutral-600 rounded-full p-3 hover:cursor-pointer"
+            onClick={toggleSidebar}>
+              <Menu />
+            </div>
+            
+            <Link href="/decks/" className="flex items-center gap-2">
+              <Image className='rounded-xl'
               src="/images/scren.webp"
               alt="thing"
               width={50}
               height={30}
-            />
+              />
+              <h1>Aniki</h1>
+            </Link>
           </div>
 
           {/* Center */}
@@ -89,8 +101,9 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
               />
             </div>
           </div>
+          
           {/* Right side */}
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end gap-4 px-3">
             {/* Add button */}
             <Button
               className="size-8 rounded-full"

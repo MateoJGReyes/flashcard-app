@@ -16,6 +16,7 @@ SidebarMenuButton,
 SidebarMenuItem,
 SidebarProvider,
 } from "@/components/ui/sidebar"
+import { Navbar } from "@/components/ui/navbar";
 
 const items = [
   {
@@ -73,20 +74,27 @@ const ecks = [
 ]
 export default function Home({ params }: { params: { id: string } }) {
   const [side, setSide] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const numericId = Number(params.id);
   const eck = ecks.find((eck) => eck.id === numericId);
   return (
-    <div className="flex grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <AppSideBar />
-      <main onClick={() => setSide(!side)}
-        className="w-250 h-150 border border-5 ml-64 p-20 flex rounded-xl items-center justify-center font-[family-name:var(--font-geist-sans)] overflow-hidden">
-        <h1 className="text-[50px]">{side === true ? eck?.cardQuestion : eck?.cardAnswer}</h1>
-      </main>
-      <div className="ml-64 p-8 font-[family-name:var(--font-geist-sans)]">
-        <h1>
-          osu how {params.id}
-        </h1>
+    <>
+      <div>
+        <Navbar toggleSidebar={() => setIsSidebarCollapsed(prev => !prev)}/>
       </div>
-    </div>
+      
+      <div className="flex grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <AppSideBar isCollapsed={isSidebarCollapsed} />
+        <main onClick={() => setSide(!side)}
+          className="w-250 h-150 border border-5 ml-64 p-20 flex rounded-xl items-center justify-center font-[family-name:var(--font-geist-sans)] overflow-hidden">
+          <h1 className="text-[50px]">{side === true ? eck?.cardQuestion : eck?.cardAnswer}</h1>
+        </main>
+        <div className="ml-64 p-8 font-[family-name:var(--font-geist-sans)]">
+          <h1>
+            osu how {params.id}
+          </h1>
+        </div>
+      </div>
+    </>
   );
 }

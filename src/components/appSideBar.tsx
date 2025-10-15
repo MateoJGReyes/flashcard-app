@@ -1,6 +1,6 @@
 'use client';
 
-import { Calendar, FileStack, Pencil, Search, Settings, View } from "lucide-react"
+import { Calendar, FileStack, Pencil, Search, Settings, Menu } from "lucide-react"
 import 
 {
   Sidebar,
@@ -41,33 +41,36 @@ const items = [
     icon: Settings,
   },
 ]
-export function AppSideBar()
+interface AppSideBarProps {
+  isCollapsed: boolean;
+}
+
+export function AppSideBar({ isCollapsed }: AppSideBarProps)
 {
-return (
-    <div>
-        
-        <SidebarProvider>
-            <Sidebar>
-                <SidebarContent>
-                    <SidebarGroup>
-                        <SidebarGroupContent>
-                            <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title} className="hover:bg-neutral-800 rounded-md">
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                        <item.icon />
-                                        <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                            </SidebarMenu>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                </SidebarContent>
-            </Sidebar>
-        </SidebarProvider>
-    </div>
-    )
+  return (
+      <div>
+          <SidebarProvider>
+              <Sidebar className={`${ isCollapsed ? "w-16" : "w-64"}`}>
+                  <SidebarContent>
+                      <SidebarGroup>
+                          <SidebarGroupContent>
+                              <SidebarMenu>
+                              {items.map((item) => (
+                                  <SidebarMenuItem key={item.title} className="hover:bg-neutral-200 dark:hover:bg-neutral-800 pl-3 rounded-md">
+                                      <SidebarMenuButton asChild>
+                                          <a href={item.url}>
+                                            <item.icon className="w-6 h-6 md:w-8 md:h-8"/>
+                                            {!isCollapsed && <span>{item.title}</span>}
+                                          </a>
+                                      </SidebarMenuButton>
+                                  </SidebarMenuItem>
+                              ))}
+                              </SidebarMenu>
+                          </SidebarGroupContent>
+                      </SidebarGroup>
+                  </SidebarContent>
+              </Sidebar>
+          </SidebarProvider>
+      </div>
+  )
 }

@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { useState } from "react"
 const invoices = [
   {
     invoice: "INV001",
@@ -56,14 +57,15 @@ const invoices = [
   },
 ]
 export default function Home() {
+   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
     return (
         <>
             <div>
-                <Navbar />
+                <Navbar toggleSidebar={() => setIsSidebarCollapsed(prev => !prev)}/>
             </div>
             <div className="relative z-0 grid grid-rows-[20px_1fr_20px] min-h-screen p-4 pb-20 sm:p-10 font-[family-name:var(--font-geist-sans)]">
-                <AppSideBar />
-                <div className="ml-64 flex-1">
+                <AppSideBar isCollapsed={isSidebarCollapsed} />
+                <div className={`${isSidebarCollapsed ? "ml-16" : "ml-64"} flex-1 transition-all duration-200`}>
                     <Table>
                         <TableCaption>A list of your recent invoices.</TableCaption>
                         <TableHeader>
