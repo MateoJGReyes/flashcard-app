@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
 
 type Deck = {
-  id: number;
-  deckName: string | null;
+  id: number,
+  deckName: string | null,
   deckAmount: number,
   amountNew: number,
   amountRelearn: number,

@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { useRouter } from 'next/navigation';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -13,35 +13,74 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { serializeJsonQuery } from "@/generated/prisma/runtime/library";
+
+type LogInfo = {
+  id: number,
+  email: string,
+  username: string,
+  passwordHash: string
+  createdAt: Date;
+}
+
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [inEmail, setEmail] = useState("");
+  const [inPassword, setPassword] = useState("");
+  const [sers, setUsers] = useState<LogInfo[]>([]);
+  useEffect(() => {
+    async function fetchUsers() {
+      const res = await fetch("/api/user");
+      const users = await res.json();
+      const sersa = users.map((l: LogInfo) => ({
+        id: l.id,
+        email: l.email,
+        username: l.username,
+        passwordHash: l.passwordHash,
+        createdAt: l.createdAt
+      }));
+      setUsers(sersa);
+    }
+    fetchUsers();
+  }, []);
   const router = useRouter();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push('/decks');
+    const matchedUser = sers.find(
+      (use) => use.email === inEmail || use.username === inEmail && use.passwordHash === inPassword
+    );
+    if (matchedUser) {
+      router.push('/decks');
+    } 
+    else {
+      alert("Invalid email or password"); // or set an error state
+    }
   };
+
   return (
     <div className={cn("flex flex-col gap-6 text-center", className)} {...props}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter your username or email below to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Username/Email</Label>
                 <Input
                   id="email"
-                  type="email"
-                  placeholder="m@example.com"
+                  type="input"
+                  placeholder="example/m@example.com"
+                  value={inEmail}
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-2">
@@ -54,7 +93,14 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" placeholder="water" required />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  placeholder="water" 
+                  value={inPassword}
+                  required 
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
               <Button type="submit" className="w-full  text-neutral-800">
                 Login

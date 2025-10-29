@@ -1,11 +1,12 @@
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET() 
+{
   try 
   {
-    const decks = await prisma.deck.findMany();
-    console.log("Fetched users:", decks);
-    return new Response(JSON.stringify(decks));
+    const users = await prisma.user.findMany();
+    console.log("Fetched users:", users);
+    return new Response(JSON.stringify(users));
   } 
   catch (error: any) 
   {

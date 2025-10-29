@@ -10,11 +10,8 @@ VALUES ("君の＿です。", "ファン");
 
 SELECT * FROM deck
 
-INSERT INTO deck (deckName)
-VALUES ("Japanese N1"),
-("Computer Science"),
-("Review"),
-("Placeholder #1"),
-("Placeholder #2");
-
+INSERT INTO user (email, username, passwordHash)
+VALUES ("water@gmail.com, Teo1221, hey");
+UPDATE table_name
+SET column1 = new_value1
 DROP TABLE card

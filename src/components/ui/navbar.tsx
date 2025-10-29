@@ -8,6 +8,14 @@ import { PlusIcon, SearchIcon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 // Types
 export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
@@ -105,17 +113,34 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
           {/* Right side */}
           <div className="flex justify-end gap-4 px-3">
             {/* Add button */}
-            <Button
-              className="size-8 rounded-full"
-              size="icon"
-              aria-label="Add new item"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onAddClick) onAddClick();
-              }}
-            >
-              <PlusIcon size={16} aria-hidden="true" />
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  className="size-8 rounded-full"
+                  size="icon"
+                  aria-label="Add new item"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onAddClick) onAddClick();
+                  }}
+                >
+                  <Image className='rounded-full'
+                  src="/images/pfp.webp"
+                  alt="thing"
+                  width={35}
+                  height={35}
+                  />
             </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent classname="">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
