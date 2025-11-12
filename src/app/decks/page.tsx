@@ -4,7 +4,7 @@ import { AppSideBar } from "@/components/appSideBar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Navbar } from "@/components/ui/navbar";
+import { Navbar } from "@/components/navbar";
 
 type Deck = {
   id: number,

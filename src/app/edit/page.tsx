@@ -1,6 +1,6 @@
 "use client"
 import { AppSideBar } from "@/components/appSideBar"
-import { Navbar } from "@/components/ui/navbar"
+import { Navbar } from "@/components/navbar"
 import {
   Table,
   TableBody,

@@ -132,13 +132,13 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                   />
             </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent classname="">
+              <DropdownMenuContent className="bg-neutral-800 border-neutral-800 mt-5 mr-2">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
+                <DropdownMenuItem className=" hover:bg-neutral-700 hover:cursor-pointer">Profile</DropdownMenuItem>
+                <DropdownMenuItem className=" hover:bg-neutral-700 hover:cursor-pointer">Billing</DropdownMenuItem>
+                <DropdownMenuItem className=" hover:bg-neutral-700 hover:cursor-pointer">Team</DropdownMenuItem>
+                <DropdownMenuItem className=" hover:bg-neutral-700 hover:cursor-pointer">Subscription</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET() 
+{
   try 
   {
     const decks = await prisma.deck.findMany();
