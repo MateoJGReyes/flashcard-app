@@ -29,34 +29,30 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const [inEmail, setEmail] = useState("");
   const [inPassword, setPassword] = useState("");
-  const [sers, setUsers] = useState<LogInfo[]>([]);
-  useEffect(() => {
-    async function fetchUsers() {
-      const res = await fetch("/api/user");
-      const users = await res.json();
-      const sersa = users.map((l: LogInfo) => ({
-        id: l.id,
-        email: l.email,
-        username: l.username,
-        passwordHash: l.passwordHash,
-        createdAt: l.createdAt
-      }));
-      setUsers(sersa);
-    }
-    fetchUsers();
-  }, []);
+  
   const router = useRouter();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>)
+  {
     e.preventDefault();
-    const matchedUser = sers.find(
-      (use) => use.email === inEmail || use.username === inEmail && use.passwordHash === inPassword
-    );
-    if (matchedUser) {
+
+    const res = await fetch("/api/login", 
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ login: inEmail, password: inPassword }),
+      });
+
+    const data = await res.json();
+
+    if (data.ok) 
+    {
+      console.log("Login successful!", data.user);
       router.push('/decks');
     } 
-    else {
-      alert("Invalid email or password"); // or set an error state
+    else 
+    {
+      console.error("Error:", data.error);
     }
   };
 

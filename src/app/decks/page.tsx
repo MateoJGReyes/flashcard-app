@@ -45,7 +45,7 @@ export default function Home() {
         <main className={`align-top row-start-2 ${ isSidebarCollapsed ? "ml-16" : "ml-64"} transition-all duration-200`}>
           <div className="flex gap-[100px] grid pt-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {ecks.map((eck, id) => (
-              <Link key={id} href={`/decks/${id}`} className="hover:cursor-pointer rounded-md leading-8">
+              <Link key={id} href={`/decks/${id}`} className="hover:cursor-pointer rounded-xl leading-8 active:bg-neutral-800 duration-100 p-5">
                 <div>
                   <Image className='rounded-xl'
                     src="/images/scren.webp"

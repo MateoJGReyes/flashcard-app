@@ -56,7 +56,7 @@ export function AppSideBar({ isCollapsed }: AppSideBarProps)
                           <SidebarGroupContent>
                               <SidebarMenu>
                               {items.map((item) => (
-                                  <SidebarMenuItem key={item.title} className="hover:bg-neutral-200 dark:hover:bg-neutral-800 pl-3 rounded-md">
+                                  <SidebarMenuItem key={item.title} className="hover:bg-neutral-200 dark:hover:bg-neutral-800 pl-2 rounded-md">
                                       <SidebarMenuButton asChild>
                                           <a href={item.url}>
                                             <item.icon className="w-6 h-6 md:w-8 md:h-8"/>
